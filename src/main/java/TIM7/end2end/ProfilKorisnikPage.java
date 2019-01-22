@@ -14,9 +14,18 @@ public class ProfilKorisnikPage {
 	@FindBy(xpath = "/html/body/app-root/div/div[1]/button[1][text()='Odjava']")
 	private WebElement odjavaDugme;
 	
+	@FindBy(xpath = "	/html/body/app-root/div/div[1]/div/button[3]")
+	private WebElement kupiKartuDugme;
 	
 	
-	 public WebDriver getDriver() {
+
+	 public WebElement getKupiKartuDugme() {
+		return kupiKartuDugme;
+	}
+
+
+
+	public WebDriver getDriver() {
 		return driver;
 	}
 
@@ -32,6 +41,12 @@ public class ProfilKorisnikPage {
 	}
 	public int brojKolonaUTabeliKarata() {
 		return driver.findElements(By.cssSelector("tr")).size();
+	}
+	public void kartaKupljenaProvera(int prethodniBrojKarata) {
+	
+		(new WebDriverWait(driver, 10))
+			.until(ExpectedConditions.numberOfElementsToBe(
+					By.cssSelector("tr"), prethodniBrojKarata + 1));
 	}
 
 	public ProfilKorisnikPage(WebDriver driver) {

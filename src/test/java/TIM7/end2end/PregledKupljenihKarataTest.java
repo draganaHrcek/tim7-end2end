@@ -48,7 +48,7 @@ public class PregledKupljenihKarataTest {
 				
 				
 				korProf = PageFactory.initElements(browser, ProfilKorisnikPage.class);
-				
+				browser.navigate().refresh();
 			
 				
 	}
@@ -56,7 +56,6 @@ public class PregledKupljenihKarataTest {
 	@Test
 	public void pregledKupljenihKaratTest() throws InterruptedException {
 		
-		browser.navigate().refresh();
 		
 		//ulogovan korisnik ima 3 kupljene karte, provera da li na profilu u tabeli ima 4 reda karata(1 red je heder tabele)
 		

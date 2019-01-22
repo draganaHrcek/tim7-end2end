@@ -17,11 +17,16 @@ import org.testng.annotations.Test;
 
 
 
-public class PrijavaTest {
+public class OdjavaTest {
 	
 	private WebDriver browser;
 	PocetnaPage pocetna;
 	PrijavaPage prijava;
+	ProfilKorisnikPage korProf;
+	ProfilAdminPage adminProf;
+	ProfilVerifikatorPage verifikatorProf;
+	ProfilKondukterPage kondukterProf;
+	
 
 	@BeforeMethod
 	public void setupSelenium() {
@@ -35,13 +40,17 @@ public class PrijavaTest {
 				
 				pocetna = PageFactory.initElements(browser, PocetnaPage.class);
 				prijava=PageFactory.initElements(browser, PrijavaPage.class);
+				korProf = PageFactory.initElements(browser, ProfilKorisnikPage.class);
+				adminProf=PageFactory.initElements(browser, ProfilAdminPage.class);
+				verifikatorProf = PageFactory.initElements(browser, ProfilVerifikatorPage.class);
+				kondukterProf=PageFactory.initElements(browser, ProfilKondukterPage.class);
 				
 				
 	}
 	
 	
 	@Test
-	public void uspesnaPrijavaKorisnik() throws InterruptedException {
+	public void odjavaKorisnik() throws InterruptedException {
 		
 		
 		
@@ -60,12 +69,15 @@ public class PrijavaTest {
 		
 		
 		assertEquals(browser.getCurrentUrl(), "http://localhost:4200/profilKorisnik");
-		
+			korProf.getOdjavaDugme().click();
+			pocetna.stranicaUcitana();
+			assertEquals(browser.getCurrentUrl(), "http://localhost:4200/");
+	
 	}
 	
 	
 	@Test
-	public void uspesnaPrijavaKondukter() {
+	public void odjavaKondukter() {
 		
 		pocetna.stranicaUcitana();
 		pocetna.getPrijavaDugme().click();
@@ -86,10 +98,14 @@ public class PrijavaTest {
 		
 		assertEquals(browser.getCurrentUrl(), "http://localhost:4200/profilKondukter");
 		
+		kondukterProf.getOdjavaDugme().click();
+		pocetna.stranicaUcitana();
+		assertEquals(browser.getCurrentUrl(), "http://localhost:4200/");
+		
 	}
 	
 	@Test
-	public void uspesnaPrijavaAdmin() {
+	public void odjavaAdmin() {
 		
 		pocetna.stranicaUcitana();
 		pocetna.getPrijavaDugme().click();
@@ -107,9 +123,13 @@ public class PrijavaTest {
 		
 		assertEquals(browser.getCurrentUrl(), "http://localhost:4200/profilAdmin");
 		
+		adminProf.getOdjavaDugme().click();
+		pocetna.stranicaUcitana();
+		assertEquals(browser.getCurrentUrl(), "http://localhost:4200/");
+		
 	}
 	@Test
-	public void uspesnaPrijavaVerifikator() {
+	public void odjavaVerifikator() {
 		
 		pocetna.stranicaUcitana();
 		pocetna.getPrijavaDugme().click();
@@ -127,86 +147,11 @@ public class PrijavaTest {
 		
 		assertEquals(browser.getCurrentUrl(), "http://localhost:4200/profilVerifikator");
 		
-	}
-	
-	
-	
-	@Test
-	public void neispravniKredencijali() {
-		
+		verifikatorProf.getOdjavaDugme().click();
 		pocetna.stranicaUcitana();
-		pocetna.getPrijavaDugme().click();
+		assertEquals(browser.getCurrentUrl(), "http://localhost:4200/");
 		
-		assertEquals(browser.getCurrentUrl(), "http://localhost:4200/prijava");
 		
-		prijava.stranicaUcitana();
-		prijava.getKorIme().clear();
-		prijava.getKorIme().sendKeys("bla");
-		prijava.getLozinka().clear();
-		prijava.getLozinka().sendKeys("bla");
-		prijava.getDugmePrijava().click();
-		
-		(new WebDriverWait(browser, 10)).until(ExpectedConditions.alertIsPresent());
-		Alert alert = browser.switchTo().alert();
-	
-		assertEquals(alert.getText() , "Uneli ste neispravne kredencijale.");
-		alert.accept();
-		
-		prijava.stranicaUcitana();
-		assertEquals(browser.getCurrentUrl(), "http://localhost:4200/prijava");
-		
-	}
-	
-	
-	@Test
-	public void praznoKoriImePolje() {
-		
-		pocetna.stranicaUcitana();
-		pocetna.getPrijavaDugme().click();
-		
-		assertEquals(browser.getCurrentUrl(), "http://localhost:4200/prijava");
-		
-		prijava.stranicaUcitana();
-		
-		prijava.getLozinka().clear();
-		prijava.getLozinka().sendKeys("11111111");
-		prijava.getDugmePrijava().click();
-		prijava.korImePoruka();
-		
-		assertEquals(browser.getCurrentUrl(), "http://localhost:4200/prijava");
-		
-	}
-
-	
-	@Test
-	public void praznaLozinkaPolje() {
-		
-		pocetna.stranicaUcitana();
-		pocetna.getPrijavaDugme().click();
-		
-		assertEquals(browser.getCurrentUrl(), "http://localhost:4200/prijava");
-		
-		prijava.stranicaUcitana();
-		
-		prijava.getKorIme().clear();
-		prijava.getKorIme().sendKeys("KorisnikTest");
-		prijava.getDugmePrijava().click();
-		
-		assertEquals(browser.getCurrentUrl(), "http://localhost:4200/prijava");
-		
-	}
-
-	@Test
-	public void nepopunjenaPoljaPrijava() {
-		
-		pocetna.stranicaUcitana();
-		pocetna.getPrijavaDugme().click();
-		
-		assertEquals(browser.getCurrentUrl(), "http://localhost:4200/prijava");
-		
-		prijava.getDugmePrijava().click();
-		prijava.praznaPoljaPoruke();
-		assertEquals(browser.getCurrentUrl(), "http://localhost:4200/prijava");
 		
 	}
 	
@@ -216,5 +161,7 @@ public class PrijavaTest {
 	//browser.quit();
 	}
 
+	
+	
 
 }

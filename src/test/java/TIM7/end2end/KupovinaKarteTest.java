@@ -59,6 +59,7 @@ public class KupovinaKarteTest {
 				
 	}
 	
+	
 	@Test
 	public void uspesnaKupovina() throws InterruptedException {
 			
@@ -239,9 +240,50 @@ public class KupovinaKarteTest {
 			
 			
 	}
-			
-			
+
+
+	@Test
+	public void korisnikBezStatusaKupovina() throws InterruptedException {
 		
+		WebStorage webStorage = (WebStorage) new Augmenter().augment(browser);
+		LocalStorage localStorage= (LocalStorage) webStorage.getLocalStorage();
+		localStorage.setItem("X-Auth-Token", "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJLb3Jpc25pa0JlelN0YXR1c2FUZXN0IiwiY3JlYXRlZCI6MTU0ODE5NjY3Mzk5OCwiZXhwIjoxNTQ4MjE0Njc0fQ.FXvLMNnE_d0i6uLqQxp00l5MhKmi9brl3FVPEiEbVT9cIFqDlsSt2zd_sfzCsRF_7ov439El2BQQCKUhl3aoqQ");
+		localStorage.setItem("ulogovan","{\"korIme\":\"KorisnikBezStatusaTest\",\"uloga\":\"KORISNIK\",\"ime\":\"test\",\"prezime\":\"test\",\"email\":\"test@test.test\",\"status\":null}");
+		
+			
+			korProf.profilUcitan();
+			korProf.getKupiKartuDugme().click();
+			assertEquals(browser.getCurrentUrl(), "http://localhost:4200/kupovinaKarte");
+			
+			kupovinaStranica.stranicaUcitana();
+			
+			kupovinaStranica.getTipKarte().click();
+			kupovinaStranica.getSelect1Opcija1().click();
+			
+			kupovinaStranica.getTipPrevoza().click();
+			kupovinaStranica.getSelect2Opcija1().click();
+			
+			kupovinaStranica.getLinijaZona().click();
+			kupovinaStranica.getSelect3Opcija1().click();
+			
+			kupovinaStranica.getKupiDugme().click();
+			
+			
+			
+			(new WebDriverWait(browser, 10)).until(ExpectedConditions.alertIsPresent());
+			Alert alert = browser.switchTo().alert();
+			assertEquals(alert.getText() , "Nije potvrdjen vas status. Proverite da li ste prilozili potvrdu.");
+			alert.accept();
+			
+			
+			
+			kupovinaStranica.stranicaUcitana();
+			assertEquals(browser.getCurrentUrl(), "http://localhost:4200/kupovinaKarte");
+			
+			
+			
+	
+	}
 	@AfterMethod
 	public void closeSelenium() {
 		// Shutdown the browser

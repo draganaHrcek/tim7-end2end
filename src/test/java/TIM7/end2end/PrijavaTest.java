@@ -55,16 +55,14 @@ public class PrijavaTest {
 		prijava.getLozinka().clear();
 		prijava.getLozinka().sendKeys("12345678");
 		prijava.getDugmePrijava().click();
-		
-		(new WebDriverWait(browser, 10)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html/body/app-root/div/div[2]/app-profil-korisnik/div/div/div[2]/table")));
+		(new WebDriverWait(browser, 10)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html/body/app-root/div/div[1]/button[1][text()='Odjava']")));
 		
 		
 		assertEquals(browser.getCurrentUrl(), "http://localhost:4200/profilKorisnik");
 		
 	}
 	
-	//testovi koji cekaju da se urede profili ovih korisnika, da bih mogla da odradim wait (da li je dobar profil zaista ucitan kad se uloguju)
-	/*
+	
 	@Test
 	public void uspesnaPrijavaKondukter() {
 		
@@ -80,7 +78,7 @@ public class PrijavaTest {
 		prijava.getLozinka().sendKeys("12345678");
 		prijava.getDugmePrijava().click();
 		
-		(new WebDriverWait(browser, 10)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html/body/app-root/div/div[1]/button[3]")));
+			(new WebDriverWait(browser, 10)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html/body/app-root/div/div[1]/button[1][text()='Odjava']")));
 		
 		
 		
@@ -104,6 +102,8 @@ public class PrijavaTest {
 		prijava.getLozinka().sendKeys("12345678");
 		prijava.getDugmePrijava().click();
 		
+		(new WebDriverWait(browser, 10)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html/body/app-root/div/div[1]/button[1][text()='Odjava']")));
+		
 		assertEquals(browser.getCurrentUrl(), "http://localhost:4200/profilAdmin");
 		
 	}
@@ -122,11 +122,13 @@ public class PrijavaTest {
 		prijava.getLozinka().sendKeys("12345678");
 		prijava.getDugmePrijava().click();
 		
+		(new WebDriverWait(browser, 10)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html/body/app-root/div/div[1]/button[1][text()='Odjava']")));
+		
 		assertEquals(browser.getCurrentUrl(), "http://localhost:4200/profilVerifikator");
 		
 	}
 	
-	*/
+	
 	
 	@Test
 	public void neispravniKredencijali() {

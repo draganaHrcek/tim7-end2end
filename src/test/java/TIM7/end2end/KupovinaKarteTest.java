@@ -21,6 +21,8 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import TIM7.end2end.Security.Token;
+
 
 
 public class KupovinaKarteTest {
@@ -44,11 +46,11 @@ public class KupovinaKarteTest {
 				
 				//navigate
 				browser.navigate().to("http://localhost:4200/profilKorisnik");
-
+				String token = Token.generateToken("KorisnikTest");
 				WebStorage webStorage = (WebStorage) new Augmenter().augment(browser);
 				LocalStorage localStorage= (LocalStorage) webStorage.getLocalStorage();
-				localStorage.setItem("X-Auth-Token", "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJLb3Jpc25pa1Rlc3QiLCJjcmVhdGVkIjoxNTQ4MTg0ODE0ODY0LCJleHAiOjE1NDgyMDI4MTR9.lFR3Je-wC9G_IVLb-96_bda0H4Y4W6LqlWxTeAg5gUuWHb9Wc4pZg9ThbVHcd25YFsUqaljR78RwbsrYtwyuHA");
-				localStorage.setItem("ulogovan"," {\"korIme\":\"KorisnikTest\",\"uloga\":\"KORISNIK\",\"ime\":\"KorisnikTest\",\"prezime\":\"KorisnikTest\",\"email\":\"e@gmail.com\",\"status\":\"STUDENT\"}");
+				localStorage.setItem("X-Auth-Token", token);
+				localStorage.setItem("ulogovan"," {\"korIme\":\"KorisnikTest\",\"uloga\":\"KORISNIK\",\"ime\":\"ImeTest\",\"prezime\":\"PrezimeTest\",\"email\":\"test@gmail.com\",\"status\":\"STUDENT\"}");
 				
 				
 				korProf = PageFactory.initElements(browser, ProfilKorisnikPage.class);
@@ -87,7 +89,7 @@ public class KupovinaKarteTest {
 			
 			
 			
-			(new WebDriverWait(browser, 10)).until(ExpectedConditions.alertIsPresent());
+			(new WebDriverWait(browser, 20)).until(ExpectedConditions.alertIsPresent());
 			Alert alert = browser.switchTo().alert();
 			assertEquals(alert.getText() , "Uspesno ste izvrsili kupovinu karte.");
 			alert.accept();
@@ -99,9 +101,7 @@ public class KupovinaKarteTest {
 			
 			assertEquals(korProf.brojKolonaUTabeliKarata(), brojKarataPreKupovine+1);
 			
-			
-			
-			
+		
 			
 	
 	}
@@ -248,7 +248,7 @@ public class KupovinaKarteTest {
 		WebStorage webStorage = (WebStorage) new Augmenter().augment(browser);
 		LocalStorage localStorage= (LocalStorage) webStorage.getLocalStorage();
 		localStorage.setItem("X-Auth-Token", "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJLb3Jpc25pa0JlelN0YXR1c2FUZXN0IiwiY3JlYXRlZCI6MTU0ODE5NjY3Mzk5OCwiZXhwIjoxNTQ4MjE0Njc0fQ.FXvLMNnE_d0i6uLqQxp00l5MhKmi9brl3FVPEiEbVT9cIFqDlsSt2zd_sfzCsRF_7ov439El2BQQCKUhl3aoqQ");
-		localStorage.setItem("ulogovan","{\"korIme\":\"KorisnikBezStatusaTest\",\"uloga\":\"KORISNIK\",\"ime\":\"test\",\"prezime\":\"test\",\"email\":\"test@test.test\",\"status\":null}");
+		localStorage.setItem("ulogovan","{\"korIme\":\"KorisnikBezStatusaTest\",\"uloga\":\"KORISNIK\",\"ime\":\"test\",\"prezime\":\"test\",\"email\":\"test@gmail.com\",\"status\":null}");
 		
 			
 			korProf.profilUcitan();
@@ -284,10 +284,12 @@ public class KupovinaKarteTest {
 			
 	
 	}
+	
+	
 	@AfterMethod
 	public void closeSelenium() {
 		// Shutdown the browser
-	//browser.quit();
+	browser.quit();
 	}
 
 	

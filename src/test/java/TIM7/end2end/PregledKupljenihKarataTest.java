@@ -18,6 +18,8 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import TIM7.end2end.Security.Token;
+
 
 
 public class PregledKupljenihKarataTest {
@@ -40,11 +42,11 @@ public class PregledKupljenihKarataTest {
 				
 				//navigate
 				browser.navigate().to("http://localhost:4200/profilKorisnik");
-
+				String token = Token.generateToken("KorisnikTest");
 				WebStorage webStorage = (WebStorage) new Augmenter().augment(browser);
 				LocalStorage localStorage= (LocalStorage) webStorage.getLocalStorage();
-				localStorage.setItem("X-Auth-Token", "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJLb3Jpc25pa1Rlc3QiLCJjcmVhdGVkIjoxNTQ4MTg0ODE0ODY0LCJleHAiOjE1NDgyMDI4MTR9.lFR3Je-wC9G_IVLb-96_bda0H4Y4W6LqlWxTeAg5gUuWHb9Wc4pZg9ThbVHcd25YFsUqaljR78RwbsrYtwyuHA");
-				localStorage.setItem("ulogovan"," {\"korIme\":\"KorisnikTest\",\"uloga\":\"KORISNIK\",\"ime\":\"KorisnikTest\",\"prezime\":\"KorisnikTest\",\"email\":\"e@gmail.com\",\"status\":\"STUDENT\"}");
+				localStorage.setItem("X-Auth-Token", token);
+				localStorage.setItem("ulogovan"," {\"korIme\":\"KorisnikTest\",\"uloga\":\"KORISNIK\",\"ime\":\"ImeTest\",\"prezime\":\"PrezimeTest\",\"email\":\"test@gmail.com\",\"status\":\"STUDENT\"}");
 				
 				
 				korProf = PageFactory.initElements(browser, ProfilKorisnikPage.class);
@@ -70,7 +72,7 @@ public class PregledKupljenihKarataTest {
 	@AfterMethod
 	public void closeSelenium() {
 		// Shutdown the browser
-	//browser.quit();
+	browser.quit();
 	}
 
 	

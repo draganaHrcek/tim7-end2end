@@ -16,8 +16,13 @@ public class ProfilKorisnikPage {
 	
 	@FindBy(xpath = "	/html/body/app-root/div/div[1]/div/button[3]")
 	private WebElement kupiKartuDugme;
+	@FindBy(xpath = "/html/body/app-root/div/div[1]/div/button[4]")
+	private WebElement izmenaPodatakaDugme;
 	
 	
+	
+	
+
 
 	 public WebElement getKupiKartuDugme() {
 		return kupiKartuDugme;
@@ -25,9 +30,16 @@ public class ProfilKorisnikPage {
 
 
 
+	public WebElement getIzmenaPodatakaDugme() {
+		return izmenaPodatakaDugme;
+	}
+
+
+
 	public WebDriver getDriver() {
 		return driver;
 	}
+
 
 
 

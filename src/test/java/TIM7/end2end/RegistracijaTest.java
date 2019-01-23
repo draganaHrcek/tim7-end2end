@@ -253,7 +253,7 @@ public class RegistracijaTest {
 		@AfterMethod
 		public void closeSelenium() {
 			// Shutdown the browser
-		//browser.quit();
+		browser.quit();
 		}
 	
 	

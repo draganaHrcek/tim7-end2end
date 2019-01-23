@@ -58,11 +58,12 @@ public class IzmenaPodatakaTest {
 
 	
 	 
-	  @Test public void uspesnaIzmenaProfila() {
+	  @Test 
+	  public void uspesnaIzmenaProfila() {
 	  
-	  korProf.profilUcitan(); korProf.getIzmenaPodatakaDugme().click();
-	  assertEquals(browser.getCurrentUrl(),
-	  "http://localhost:4200/uredjivanjeProfila");
+	  korProf.profilUcitan();
+	  korProf.getIzmenaPodatakaDugme().click();
+	  assertEquals(browser.getCurrentUrl(),  "http://localhost:4200/uredjivanjeProfila");
 	 
 	 
 	  izmenaStranica.stranicaUcitana();
@@ -85,8 +86,7 @@ public class IzmenaPodatakaTest {
 	 
 	 izmenaStranica.getSacuvajDugme().click();
 	 
-	 korProf.profilUcitan(); assertEquals(browser.getCurrentUrl(),
-	 "http://localhost:4200/profilKorisnik");
+	 korProf.profilUcitan(); assertEquals(browser.getCurrentUrl(), "http://localhost:4200/profilKorisnik");
 	 
 	 (new WebDriverWait(browser,10)).until(ExpectedConditions.visibilityOfElementLocated((By.xpath("/html/body/app-root/div/div[2]/app-profil-korisnik/div/div/div[2]/h1[text()='NovoIme NovoPrezime']"))));
 	 (new WebDriverWait(browser,10)).until(ExpectedConditions.visibilityOfElementLocated((By.xpath("/html/body/app-root/div/div[2]/app-profil-korisnik/div/div/div[2]/h3[2][text()='Email adresa: novaAdresa@gmail.com ']"))));
@@ -97,15 +97,14 @@ public class IzmenaPodatakaTest {
 	 
 	 @Test public void izmenaPoodatakaOdustanak() {
 	 
-	 korProf.profilUcitan(); korProf.getIzmenaPodatakaDugme().click();
-	 assertEquals(browser.getCurrentUrl(),
-	 "http://localhost:4200/uredjivanjeProfila");
+	 korProf.profilUcitan(); 
+	 korProf.getIzmenaPodatakaDugme().click();
+	 assertEquals(browser.getCurrentUrl(),"http://localhost:4200/uredjivanjeProfila");
 	 
 	 izmenaStranica.stranicaUcitana();
 	 
 	 assertEquals( izmenaStranica.getImePolje().getAttribute("value"), "ImeTest");
-	 assertEquals( izmenaStranica.getPrezimePolje().getAttribute("value"),
-	 "PrezimeTest"); assertEquals(
+	 assertEquals( izmenaStranica.getPrezimePolje().getAttribute("value"),"PrezimeTest"); assertEquals(
 	 izmenaStranica.getEmailPolje().getAttribute("value"), "test@gmail.com");
 	 
 	 
@@ -124,13 +123,8 @@ public class IzmenaPodatakaTest {
 	 korProf.profilUcitan(); assertEquals(browser.getCurrentUrl(),
 	 "http://localhost:4200/profilKorisnik");
 	 
-	 (new WebDriverWait(browser,
-	 10)).until(ExpectedConditions.visibilityOfElementLocated((By.
-	 xpath("/html/body/app-root/div/div[2]/app-profil-korisnik/div/div/div[2]/h1[text()='ImeTest PrezimeTest']"
-	 )))); (new WebDriverWait(browser,
-	 10)).until(ExpectedConditions.visibilityOfElementLocated((By.
-	 xpath("/html/body/app-root/div/div[2]/app-profil-korisnik/div/div/div[2]/h3[2][text()='Email adresa: test@gmail.com ']"
-	 ))));
+	 (new WebDriverWait(browser,10)).until(ExpectedConditions.visibilityOfElementLocated((By.xpath("/html/body/app-root/div/div[2]/app-profil-korisnik/div/div/div[2]/h1[text()='ImeTest PrezimeTest']" ))));
+	 (new WebDriverWait(browser,10)).until(ExpectedConditions.visibilityOfElementLocated((By. xpath("/html/body/app-root/div/div[2]/app-profil-korisnik/div/div/div[2]/h3[2][text()='Email adresa: test@gmail.com ']" ))));
 	 
 	 
 	 

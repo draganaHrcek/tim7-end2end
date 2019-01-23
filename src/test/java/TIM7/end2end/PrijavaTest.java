@@ -52,12 +52,14 @@ public class PrijavaTest {
 		
 		prijava.stranicaUcitana();
 		prijava.getKorIme().clear();
-		prijava.getKorIme().sendKeys("KorisnikTest");
+		prijava.getKorIme().sendKeys("KorisnikLoginTest");
 		prijava.getLozinka().clear();
 		prijava.getLozinka().sendKeys("12345678");
 		prijava.getDugmePrijava().click();
-		(new WebDriverWait(browser, 10)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html/body/app-root/div/div[1]/button[1][text()='Odjava']")));
-		
+		 (new WebDriverWait(browser,10)).until(ExpectedConditions.visibilityOfElementLocated((By.xpath("/html/body/app-root/div/div[2]/app-profil-korisnik/div/div/div[2]/h1[text()='ImeTest PrezimeTest']" ))));
+		 (new WebDriverWait(browser,10)).until(ExpectedConditions.visibilityOfElementLocated((By. xpath("/html/body/app-root/div/div[2]/app-profil-korisnik/div/div/div[2]/h3[2][text()='Email adresa: test@gmail.com ']" ))));
+		 
+		 
 		
 		assertEquals(browser.getCurrentUrl(), "http://localhost:4200/profilKorisnik");
 		

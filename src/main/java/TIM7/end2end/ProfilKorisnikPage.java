@@ -20,7 +20,8 @@ public class ProfilKorisnikPage {
 	private WebElement izmenaPodatakaDugme;
 	
 	
-	
+	@FindBy(xpath = "/html/body/app-root/div/div[1]/button[2]")
+	private WebElement izmenaLozinkeDugme;
 	
 
 
@@ -40,6 +41,12 @@ public class ProfilKorisnikPage {
 		return driver;
 	}
 
+
+
+
+	public WebElement getIzmenaLozinkeDugme() {
+		return izmenaLozinkeDugme;
+	}
 
 
 

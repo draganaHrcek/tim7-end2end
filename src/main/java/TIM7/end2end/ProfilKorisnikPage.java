@@ -58,9 +58,22 @@ public class ProfilKorisnikPage {
 	public void profilUcitan() {
 		(new WebDriverWait(driver, 20)).until(ExpectedConditions.visibilityOfElementLocated((By.xpath("/html/body/app-root/div/div[2]/app-profil-korisnik/div/div/div[2]/table"))));
 	}
-	public int brojKolonaUTabeliKarata() {
+	public int brojRedovaUTabeliKarata() {
 		return driver.findElements(By.cssSelector("tr")).size();
 	}
+	
+	public int brojDnevnihkarata() {
+		return driver.findElements(By.xpath("/html/body/app-root/div/div[2]/app-profil-korisnik/div/div/div[2]/table/tbody/tr/td[text()= 'DNEVNA']")).size();
+	}
+	
+	public int brojMesecnihkarata() {
+		return driver.findElements(By.xpath("/html/body/app-root/div/div[2]/app-profil-korisnik/div/div/div[2]/table/tbody/tr/td[text()= 'MESECNA']")).size();
+	}
+	
+	public int brojGodisnjihkarata() {
+		return driver.findElements(By.xpath("/html/body/app-root/div/div[2]/app-profil-korisnik/div/div/div[2]/table/tbody/tr/td[text()= 'GODISNJA']")).size();
+	}
+	
 	public void kartaKupljenaProvera(int prethodniBrojKarata) {
 	
 		(new WebDriverWait(driver, 10))

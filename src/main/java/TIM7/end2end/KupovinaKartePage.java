@@ -14,14 +14,35 @@ WebDriver driver;
 	@FindBy(xpath = "/html/body/app-root/div/div[2]/app-kupovina-karte/div/div/div[2]/div/form/div[4]/button[1]")
 	private WebElement kupiDugme;
 	
+	
 	@FindBy(xpath = "/html/body/app-root/div/div[2]/app-kupovina-karte/div/div/div[2]/div/form/div[1]/select/option[2]")
-	private WebElement select1Opcija1;
+	private WebElement dnevnaOpcija;
+	
+	@FindBy(xpath = "/html/body/app-root/div/div[2]/app-kupovina-karte/div/div/div[2]/div/form/div[1]/select/option[3]")
+	private WebElement mesecnaOpcija;
+	
+	
+	@FindBy(xpath = "/html/body/app-root/div/div[2]/app-kupovina-karte/div/div/div[2]/div/form/div[1]/select/option[4]")
+	private WebElement godisnjaOpcija;
+	
 	
 	@FindBy(xpath = "/html/body/app-root/div/div[2]/app-kupovina-karte/div/div/div[2]/div/form/div[2]/select/option[2]")
-	private WebElement select2Opcija1;
+	private WebElement autobusOpcija;
+	
+	@FindBy(xpath = "/html/body/app-root/div/div[2]/app-kupovina-karte/div/div/div[2]/div/form/div[2]/select/option[3]")
+	private WebElement tramvajOpcija;
+	
+	@FindBy(xpath = "/html/body/app-root/div/div[2]/app-kupovina-karte/div/div/div[2]/div/form/div[2]/select/option[4]")
+	private WebElement metroOpcija;
 	
 	@FindBy(xpath = "/html/body/app-root/div/div[2]/app-kupovina-karte/div/div/div[2]/div/form/div[3]/select/option[2]")
-	private WebElement select3Opcija1;
+	private WebElement gradskaOpcija;
+	
+	@FindBy(xpath = "/html/body/app-root/div/div[2]/app-kupovina-karte/div/div/div[2]/div/form/div[3]/select/option[3]")
+	private WebElement prigradskaOpcija;
+	
+	@FindBy(xpath = "/html/body/app-root/div/div[2]/app-kupovina-karte/div/div/div[2]/div/form/div[3]/select/option[4]")
+	private WebElement veternikOpcija;
 	
 	@FindBy(xpath = "/html/body/app-root/div/div[2]/app-kupovina-karte/div/div/div[2]/div/form/div[4]/button[2]")
 	private WebElement otkaziDugme;
@@ -105,19 +126,52 @@ WebDriver driver;
 	}
 
 
-	public WebElement getSelect1Opcija1() {
-		return select1Opcija1;
+	public WebElement getDnevnaOpcija() {
+		return dnevnaOpcija;
 	}
 
 
-	public WebElement getSelect2Opcija1() {
-		return select2Opcija1;
+	public WebElement getMesecnaOpcija() {
+		return mesecnaOpcija;
 	}
 
 
-	public WebElement getSelect3Opcija1() {
-		return select3Opcija1;
+	public WebElement getGodisnjaOpcija() {
+		return godisnjaOpcija;
 	}
+
+
+	public WebElement getAutobusOpcija() {
+		return autobusOpcija;
+	}
+
+
+	public WebElement getTramvajOpcija() {
+		return tramvajOpcija;
+	}
+
+
+	public WebElement getMetroOpcija() {
+		return metroOpcija;
+	}
+
+
+	public WebElement getGradskaOpcija() {
+		return gradskaOpcija;
+	}
+
+
+	public WebElement getPrigradskaOpcija() {
+		return prigradskaOpcija;
+	}
+
+
+	public WebElement getVeternikOpcija() {
+		return veternikOpcija;
+	}
+
+
+
 
 
 

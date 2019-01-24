@@ -59,10 +59,10 @@ public class PregledKupljenihKarataTest {
 	public void pregledKupljenihKaratTest() {
 		
 		
-		//ulogovan korisnik ima 3 kupljene karte, provera da li na profilu u tabeli ima 4 reda karata(1 red je heder tabele)
+		//ulogovan korisnik ima 7 kupljenih karata, provera da li na profilu u tabeli ima 8 redova karata(1 red je heder tabele)
 		
 		korProf.profilUcitan();
-		assertEquals(korProf.brojKolonaUTabeliKarata(), 4);
+		assertEquals(korProf.brojRedovaUTabeliKarata(), 8);
 			
 	
 	}

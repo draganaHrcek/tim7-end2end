@@ -61,50 +61,253 @@ public class KupovinaKarteTest {
 				
 	}
 	
+	@Test
+	public void uspesnaKupovinaMesecne() throws InterruptedException {
+		
+		korProf.profilUcitan();
+		int brojKarataPreKupovine = korProf.brojRedovaUTabeliKarata();
+		int brojMesecnihPreKupovine= korProf.brojMesecnihkarata();
+		korProf.getKupiKartuDugme().click();
+		assertEquals(browser.getCurrentUrl(), "http://localhost:4200/kupovinaKarte");
+		
+		kupovinaStranica.stranicaUcitana();
+		
+		kupovinaStranica.getTipKarte().click();
+		kupovinaStranica.getMesecnaOpcija().click();
+		
+		kupovinaStranica.getTipPrevoza().click();
+		kupovinaStranica.getTramvajOpcija().click();
+		
+		kupovinaStranica.getLinijaZona().click();
+		kupovinaStranica.getGradskaOpcija().click();
+		
+		kupovinaStranica.getKupiDugme().click();
+		
+		
+
+		(new WebDriverWait(browser, 20)).until(ExpectedConditions.alertIsPresent());
+		Alert alert = browser.switchTo().alert();
+		assertEquals(alert.getText() , "Uspesno ste izvrsili kupovinu karte.");
+		alert.accept();
+		
+		
+		
+		korProf.profilUcitan();
+		assertEquals(browser.getCurrentUrl(), "http://localhost:4200/profilKorisnik");
+		
+		assertEquals(korProf.brojRedovaUTabeliKarata(), brojKarataPreKupovine+1);
+		assertEquals(korProf.brojMesecnihkarata(), brojMesecnihPreKupovine+1);
+		
+		
+		
+
+}
+	
 	
 	@Test
-	public void uspesnaKupovina() throws InterruptedException {
+public void uspesnaKupovinaGodisnje() throws InterruptedException {
+		
+		korProf.profilUcitan();
+		int brojKarataPreKupovine = korProf.brojRedovaUTabeliKarata();
+		int brojGodisnjihPreKupovine= korProf.brojGodisnjihkarata();
+		korProf.getKupiKartuDugme().click();
+		assertEquals(browser.getCurrentUrl(), "http://localhost:4200/kupovinaKarte");
+		
+		kupovinaStranica.stranicaUcitana();
+		
+		kupovinaStranica.getTipKarte().click();
+		kupovinaStranica.getGodisnjaOpcija().click();
+		
+		kupovinaStranica.getTipPrevoza().click();
+		kupovinaStranica.getTramvajOpcija().click();
+		
+		kupovinaStranica.getLinijaZona().click();
+		kupovinaStranica.getGradskaOpcija().click();
+		
+		kupovinaStranica.getKupiDugme().click();
+		
+		
+
+		(new WebDriverWait(browser, 20)).until(ExpectedConditions.alertIsPresent());
+		Alert alert = browser.switchTo().alert();
+		assertEquals(alert.getText() , "Uspesno ste izvrsili kupovinu karte.");
+		alert.accept();
+		
+		
+		
+		korProf.profilUcitan();
+		assertEquals(browser.getCurrentUrl(), "http://localhost:4200/profilKorisnik");
+		
+		assertEquals(korProf.brojRedovaUTabeliKarata(), brojKarataPreKupovine+1);
+		assertEquals(korProf.brojGodisnjihkarata(), brojGodisnjihPreKupovine+1);
+		
+		
+		
+
+}
+	
+	
+	
+
+	@Test
+	public void vecKupljenGodisnjaKojaCekaNaPotvrdu() throws InterruptedException {
 			
-		
-		
 			korProf.profilUcitan();
-			int brojKarataPreKupovine = korProf.brojKolonaUTabeliKarata();
+			int brojKarataPreKupovine = korProf.brojRedovaUTabeliKarata();
 			korProf.getKupiKartuDugme().click();
-			
-			
 			assertEquals(browser.getCurrentUrl(), "http://localhost:4200/kupovinaKarte");
 			
 			kupovinaStranica.stranicaUcitana();
 			
 			kupovinaStranica.getTipKarte().click();
-			kupovinaStranica.getSelect1Opcija1().click();
+			kupovinaStranica.getGodisnjaOpcija().click();
 			
 			kupovinaStranica.getTipPrevoza().click();
-			kupovinaStranica.getSelect2Opcija1().click();
+			kupovinaStranica.getMetroOpcija().click();
 			
 			kupovinaStranica.getLinijaZona().click();
-			kupovinaStranica.getSelect3Opcija1().click();
+			kupovinaStranica.getVeternikOpcija().click();
 			
 			kupovinaStranica.getKupiDugme().click();
 			
 			
 			
-			(new WebDriverWait(browser, 20)).until(ExpectedConditions.alertIsPresent());
+			(new WebDriverWait(browser, 10)).until(ExpectedConditions.alertIsPresent());
 			Alert alert = browser.switchTo().alert();
-			assertEquals(alert.getText() , "Uspesno ste izvrsili kupovinu karte.");
+			assertEquals(alert.getText() , "Karta koju ste odabrali je vec kupljena.");
 			alert.accept();
 			
 			
 			
-			korProf.profilUcitan();
-			assertEquals(browser.getCurrentUrl(), "http://localhost:4200/profilKorisnik");
-			
-			assertEquals(korProf.brojKolonaUTabeliKarata(), brojKarataPreKupovine+1);
-			
+			kupovinaStranica.stranicaUcitana();
+			assertEquals(browser.getCurrentUrl(), "http://localhost:4200/kupovinaKarte");
 		
+			
+			
 			
 	
 	}
+	
+	@Test
+	public void vecKupljenMesecnaKojaCekaNaPotvrdu() throws InterruptedException {
+			
+			korProf.profilUcitan();
+			int brojKarataPreKupovine = korProf.brojRedovaUTabeliKarata();
+			korProf.getKupiKartuDugme().click();
+			assertEquals(browser.getCurrentUrl(), "http://localhost:4200/kupovinaKarte");
+			
+			kupovinaStranica.stranicaUcitana();
+			
+			kupovinaStranica.getTipKarte().click();
+			kupovinaStranica.getMesecnaOpcija().click();
+			
+			kupovinaStranica.getTipPrevoza().click();
+			kupovinaStranica.getMetroOpcija().click();
+			
+			kupovinaStranica.getLinijaZona().click();
+			kupovinaStranica.getVeternikOpcija().click();
+			
+			kupovinaStranica.getKupiDugme().click();
+			
+			
+			
+			(new WebDriverWait(browser, 10)).until(ExpectedConditions.alertIsPresent());
+			Alert alert = browser.switchTo().alert();
+			assertEquals(alert.getText() , "Karta koju ste odabrali je vec kupljena.");
+			alert.accept();
+			
+			
+			
+			kupovinaStranica.stranicaUcitana();
+			assertEquals(browser.getCurrentUrl(), "http://localhost:4200/kupovinaKarte");
+		
+			
+			
+			
+	
+	}
+	
+	@Test
+	public void kupovinaVecKupljeneGodisnje() throws InterruptedException {
+			
+			korProf.profilUcitan();
+			int brojKarataPreKupovine = korProf.brojRedovaUTabeliKarata();
+			korProf.getKupiKartuDugme().click();
+			assertEquals(browser.getCurrentUrl(), "http://localhost:4200/kupovinaKarte");
+			
+			kupovinaStranica.stranicaUcitana();
+			
+			kupovinaStranica.getTipKarte().click();
+			kupovinaStranica.getGodisnjaOpcija().click();
+			
+			kupovinaStranica.getTipPrevoza().click();
+			kupovinaStranica.getAutobusOpcija().click();
+			
+			kupovinaStranica.getLinijaZona().click();
+			kupovinaStranica.getPrigradskaOpcija().click();
+			
+			kupovinaStranica.getKupiDugme().click();
+			
+			
+			
+			(new WebDriverWait(browser, 10)).until(ExpectedConditions.alertIsPresent());
+			Alert alert = browser.switchTo().alert();
+			assertEquals(alert.getText() , "Karta koju ste odabrali je vec kupljena.");
+			alert.accept();
+			
+			
+			
+			kupovinaStranica.stranicaUcitana();
+			assertEquals(browser.getCurrentUrl(), "http://localhost:4200/kupovinaKarte");
+		
+			
+			
+			
+	
+	}
+	
+	
+	@Test
+	public void kupovinaVecKupljeneMesecne() throws InterruptedException {
+			
+			korProf.profilUcitan();
+			int brojKarataPreKupovine = korProf.brojRedovaUTabeliKarata();
+			korProf.getKupiKartuDugme().click();
+			assertEquals(browser.getCurrentUrl(), "http://localhost:4200/kupovinaKarte");
+			
+			kupovinaStranica.stranicaUcitana();
+			
+			kupovinaStranica.getTipKarte().click();
+			kupovinaStranica.getMesecnaOpcija().click();
+			
+			kupovinaStranica.getTipPrevoza().click();
+			kupovinaStranica.getAutobusOpcija().click();
+			
+			kupovinaStranica.getLinijaZona().click();
+			kupovinaStranica.getPrigradskaOpcija().click();
+			
+			kupovinaStranica.getKupiDugme().click();
+			
+			
+			
+			(new WebDriverWait(browser, 10)).until(ExpectedConditions.alertIsPresent());
+			Alert alert = browser.switchTo().alert();
+			assertEquals(alert.getText() , "Karta koju ste odabrali je vec kupljena.");
+			alert.accept();
+			
+			
+			
+			kupovinaStranica.stranicaUcitana();
+			assertEquals(browser.getCurrentUrl(), "http://localhost:4200/kupovinaKarte");
+		
+			
+			
+			
+	
+	}
+	
+	
+	
 	
 	
 	@Test
@@ -113,7 +316,7 @@ public class KupovinaKarteTest {
 		
 		
 			korProf.profilUcitan();
-			int brojKarataPreKupovine = korProf.brojKolonaUTabeliKarata();
+			int brojKarataPreKupovine = korProf.brojRedovaUTabeliKarata();
 			korProf.getKupiKartuDugme().click();
 			
 			
@@ -122,13 +325,13 @@ public class KupovinaKarteTest {
 			kupovinaStranica.stranicaUcitana();
 			
 			kupovinaStranica.getTipKarte().click();
-			kupovinaStranica.getSelect1Opcija1().click();
+			kupovinaStranica.getDnevnaOpcija().click();
 			
 			kupovinaStranica.getTipPrevoza().click();
-			kupovinaStranica.getSelect2Opcija1().click();
+			kupovinaStranica.getAutobusOpcija().click();
 			
 			kupovinaStranica.getLinijaZona().click();
-			kupovinaStranica.getSelect3Opcija1().click();
+			kupovinaStranica.getGradskaOpcija().click();
 			
 			kupovinaStranica.getOtkaziDugme().click();
 			
@@ -138,7 +341,7 @@ public class KupovinaKarteTest {
 			korProf.profilUcitan();
 			assertEquals(browser.getCurrentUrl(), "http://localhost:4200/profilKorisnik");
 			
-			assertEquals(korProf.brojKolonaUTabeliKarata(), brojKarataPreKupovine);
+			assertEquals(korProf.brojRedovaUTabeliKarata(), brojKarataPreKupovine);
 			
 			
 			
@@ -148,7 +351,7 @@ public class KupovinaKarteTest {
 	}
 	
 	@Test
-	public void kupovinaBezPounjavanjaPolja() throws InterruptedException {
+	public void kupovinaNepopunjenaForma() throws InterruptedException {
 			
 		
 		
@@ -167,7 +370,7 @@ public class KupovinaKarteTest {
 	}
 	
 	@Test
-	public void poljeZonaLinijaNijeOdabrano() throws InterruptedException {
+	public void poljeZonaLinijaNijePopunjeno() throws InterruptedException {
 		
 		
 		
@@ -178,10 +381,10 @@ public class KupovinaKarteTest {
 			kupovinaStranica.stranicaUcitana();
 			
 			kupovinaStranica.getTipKarte().click();
-			kupovinaStranica.getSelect1Opcija1().click();
+			kupovinaStranica.getDnevnaOpcija().click();
 			
 			kupovinaStranica.getTipPrevoza().click();
-			kupovinaStranica.getSelect2Opcija1().click();
+			kupovinaStranica.getAutobusOpcija().click();
 		
 			kupovinaStranica.getKupiDugme().click();
 			
@@ -199,7 +402,7 @@ public class KupovinaKarteTest {
 	
 	}
 	@Test
-	public void tipKarteNijeOdabran() throws InterruptedException {
+	public void tipKarteNijePopunjen() throws InterruptedException {
 			
 		
 			korProf.profilUcitan();
@@ -207,7 +410,7 @@ public class KupovinaKarteTest {
 			assertEquals(browser.getCurrentUrl(), "http://localhost:4200/kupovinaKarte");
 		
 			kupovinaStranica.getTipPrevoza().click();
-			kupovinaStranica.getSelect2Opcija1().click();
+			kupovinaStranica.getAutobusOpcija().click();
 			
 			kupovinaStranica.getKupiDugme().click();
 			
@@ -230,7 +433,7 @@ public class KupovinaKarteTest {
 			
 			
 			kupovinaStranica.getTipKarte().click();
-			kupovinaStranica.getSelect1Opcija1().click();
+			kupovinaStranica.getDnevnaOpcija().click();
 			kupovinaStranica.getKupiDugme().click();
 			
 			kupovinaStranica.getTipPrevozaPoruka().isDisplayed();
@@ -241,15 +444,18 @@ public class KupovinaKarteTest {
 			
 	}
 
-
+	//korisnik bez statusa ne moze da kupi mesecnu, niti godisnju kartu, ali moze dnevnu(za jednu voznju)
+ 
 	@Test
-	public void korisnikBezStatusaKupovina() throws InterruptedException {
+	public void kupovinaMesecneKorisnikBezStatusa() throws InterruptedException {
 		
+		String token = Token.generateToken("KorisnikBezStatusaTest");
 		WebStorage webStorage = (WebStorage) new Augmenter().augment(browser);
 		LocalStorage localStorage= (LocalStorage) webStorage.getLocalStorage();
-		localStorage.setItem("X-Auth-Token", "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJLb3Jpc25pa0JlelN0YXR1c2FUZXN0IiwiY3JlYXRlZCI6MTU0ODE5NjY3Mzk5OCwiZXhwIjoxNTQ4MjE0Njc0fQ.FXvLMNnE_d0i6uLqQxp00l5MhKmi9brl3FVPEiEbVT9cIFqDlsSt2zd_sfzCsRF_7ov439El2BQQCKUhl3aoqQ");
-		localStorage.setItem("ulogovan","{\"korIme\":\"KorisnikBezStatusaTest\",\"uloga\":\"KORISNIK\",\"ime\":\"test\",\"prezime\":\"test\",\"email\":\"test@gmail.com\",\"status\":null}");
-		
+		localStorage.setItem("X-Auth-Token", token);
+		localStorage.setItem("ulogovan","{\"korIme\":\"KorisnikBezStatusaTest\",\"uloga\":\"KORISNIK\",\"ime\":\"ImeTest\",\"prezime\":\"PrezimeTest\",\"email\":\"test@gmail.com\",\"status\":null}");
+				browser.navigate().refresh();
+	
 			
 			korProf.profilUcitan();
 			korProf.getKupiKartuDugme().click();
@@ -258,13 +464,13 @@ public class KupovinaKarteTest {
 			kupovinaStranica.stranicaUcitana();
 			
 			kupovinaStranica.getTipKarte().click();
-			kupovinaStranica.getSelect1Opcija1().click();
+			kupovinaStranica.getMesecnaOpcija().click();
 			
 			kupovinaStranica.getTipPrevoza().click();
-			kupovinaStranica.getSelect2Opcija1().click();
+			kupovinaStranica.getAutobusOpcija().click();
 			
 			kupovinaStranica.getLinijaZona().click();
-			kupovinaStranica.getSelect3Opcija1().click();
+			kupovinaStranica.getGradskaOpcija().click();
 			
 			kupovinaStranica.getKupiDugme().click();
 			
@@ -284,6 +490,106 @@ public class KupovinaKarteTest {
 			
 	
 	}
+	
+	@Test
+	public void kupovinaGodisnjeKorisnikBezStatusa() throws InterruptedException {
+		
+		String token = Token.generateToken("KorisnikBezStatusaTest");
+		WebStorage webStorage = (WebStorage) new Augmenter().augment(browser);
+		LocalStorage localStorage= (LocalStorage) webStorage.getLocalStorage();
+		localStorage.setItem("X-Auth-Token", token);
+		localStorage.setItem("ulogovan","{\"korIme\":\"KorisnikBezStatusaTest\",\"uloga\":\"KORISNIK\",\"ime\":\"ImeTest\",\"prezime\":\"PrezimeTest\",\"email\":\"test@gmail.com\",\"status\":null}");
+				browser.navigate().refresh();
+	
+			
+			korProf.profilUcitan();
+			korProf.getKupiKartuDugme().click();
+			assertEquals(browser.getCurrentUrl(), "http://localhost:4200/kupovinaKarte");
+			
+			kupovinaStranica.stranicaUcitana();
+			
+			kupovinaStranica.getTipKarte().click();
+			kupovinaStranica.getGodisnjaOpcija().click();
+			
+			kupovinaStranica.getTipPrevoza().click();
+			kupovinaStranica.getAutobusOpcija().click();
+			
+			kupovinaStranica.getLinijaZona().click();
+			kupovinaStranica.getGradskaOpcija().click();
+			
+			kupovinaStranica.getKupiDugme().click();
+			
+			
+			
+			(new WebDriverWait(browser, 10)).until(ExpectedConditions.alertIsPresent());
+			Alert alert = browser.switchTo().alert();
+			assertEquals(alert.getText() , "Nije potvrdjen vas status. Proverite da li ste prilozili potvrdu.");
+			alert.accept();
+			
+			
+			
+			kupovinaStranica.stranicaUcitana();
+			assertEquals(browser.getCurrentUrl(), "http://localhost:4200/kupovinaKarte");
+			
+			
+			
+	
+	}
+	
+	
+	@Test
+	public void uspesnaKupovinaDnevnaKarta() throws InterruptedException {
+			
+		String token = Token.generateToken("KorisnikBezStatusaTest");
+		WebStorage webStorage = (WebStorage) new Augmenter().augment(browser);
+		LocalStorage localStorage= (LocalStorage) webStorage.getLocalStorage();
+		localStorage.setItem("X-Auth-Token", token);
+		localStorage.setItem("ulogovan","{\"korIme\":\"KorisnikBezStatusaTest\",\"uloga\":\"KORISNIK\",\"ime\":\"ImeTest\",\"prezime\":\"PrezimeTest\",\"email\":\"test@gmail.com\",\"status\":null}");
+		browser.navigate().refresh();
+	
+		
+			korProf.profilUcitan();
+			int brojKarataPreKupovine = korProf.brojRedovaUTabeliKarata();
+			int brojDnevnihKarata= korProf.brojDnevnihkarata();
+			korProf.getKupiKartuDugme().click();
+			
+			
+			assertEquals(browser.getCurrentUrl(), "http://localhost:4200/kupovinaKarte");
+			
+			kupovinaStranica.stranicaUcitana();
+			
+			kupovinaStranica.getTipKarte().click();
+			kupovinaStranica.getDnevnaOpcija().click();
+			
+			kupovinaStranica.getTipPrevoza().click();
+			kupovinaStranica.getAutobusOpcija().click();
+			
+			kupovinaStranica.getLinijaZona().click();
+			kupovinaStranica.getGradskaOpcija().click();
+			
+			kupovinaStranica.getKupiDugme().click();
+			
+			
+			
+			(new WebDriverWait(browser, 20)).until(ExpectedConditions.alertIsPresent());
+			Alert alert = browser.switchTo().alert();
+			assertEquals(alert.getText() , "Uspesno ste izvrsili kupovinu karte.");
+			alert.accept();
+			
+			
+			
+			korProf.profilUcitan();
+			assertEquals(browser.getCurrentUrl(), "http://localhost:4200/profilKorisnik");
+			
+			assertEquals(korProf.brojRedovaUTabeliKarata(), brojKarataPreKupovine+1);
+			assertEquals(korProf.brojDnevnihkarata(), brojDnevnihKarata+1);
+		
+			
+	
+	}
+	
+	
+	
 	
 	
 	@AfterMethod

@@ -154,9 +154,9 @@ public class IzmenaLozinkeTest {
 		  izmenaStranica.getSacuvajDugme().click();
 		  
 
-		izmenaStranica.getTrenutnaLozinkaPoruka();
-		izmenaStranica.getNovaLozinkaPoruka();
-		izmenaStranica.getPonovljenaLoznikaPoruka();
+		izmenaStranica.getTrenutnaLozinkaPoruka().isDisplayed();
+		izmenaStranica.getNovaLozinkaPoruka().isDisplayed();
+		izmenaStranica.getPonovljenaLoznikaPoruka().isDisplayed();
 		
 			
 			 assertEquals(browser.getCurrentUrl(),"http://localhost:4200/izmenaLozinke");
